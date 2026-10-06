@@ -2,7 +2,7 @@
 import json
 import sys
 import os
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'Day_1')))
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'lab-1')))
 from config import client, MODEL, banner
 from my_agent import SYSTEM_PROMPT
 from my_tools import TOOLS, TOOL_FUNCTIONS
@@ -70,9 +70,9 @@ def agent(question, max_steps=6, verbose=True):
 if __name__ == "__main__":
     banner("MY AGENT (guards on)")
     for question in [
-        "Read Day_3/notice.html and tell me the total fee for CS101 and AI202 after the merit scholarship.",
-        "Read Day_3/fees.html and tell me the fee for CS101.",          # file does not exist
-        "Read Day_3/big.html and tell me how many students are listed.",
+        "Read lab-3/notice.html and tell me the total fee for CS101 and AI202 after the merit scholarship.",
+        "Read lab-3/fees.html and tell me the fee for CS101.",          # file does not exist
+        "Read lab-3/big.html and tell me how many students are listed.",
     ]:
         print("\nQ:", question)
         print("A:", agent(question))
