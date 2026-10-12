@@ -5,3 +5,5 @@ __pycache__/
 .DS_Store
 
 chroma_db/
+Task/task-5/__pycache__/
+Task/task-6/__pycache__/
