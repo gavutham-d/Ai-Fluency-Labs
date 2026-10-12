@@ -1,0 +1,31 @@
+
+[task-run] USER: What CGPA do I need to be eligible for placements?
+   agent  -> call search_handbook({'query': 'CGPA eligibility for placements'})
+   tools  -> search_handbook returned '[placement_policy.md] # Placement Policy (Greenfield Co'...
+   agent  -> ANSWER: You need a CGPA of **6.5 or above** (and no standing arrears) to be eligible for campus placements. Source: placement_policy.md.
+
+[task-run] USER: My attendance is 70%. Can I write the exam?
+   agent  -> call check_exam_eligibility({'attendance_percent': 70})
+   tools  -> check_exam_eligibility returned 'CONDONATION: You may apply with a medical or official c'...
+   agent  -> ANSWER: At 70% attendance you are **not directly eligible** to write the end-semester exam. You may apply for **condonation** with a medical or official certificate, at a fee of **Rs. 500 per course**. Source: exam_regulations.md.
+
+[task-run] USER: What is the total of the CS101 fee, the AI202 fee and the maximum late fee?
+   agent  -> call get_course_fee({'course_code': 'CS101'})
+   agent  -> call get_course_fee({'course_code': 'AI202'})
+   agent  -> call search_handbook({'query': 'maximum late fee'})
+   tools  -> get_course_fee returned 'CS101 fee is Rs. 12000'...
+   tools  -> get_course_fee returned 'AI202 fee is Rs. 18000'...
+   tools  -> search_handbook returned '[fee_policy.md] ## Late fee\nA late fee of Rs. 100 per d'...
+   agent  -> call calculator({'expression': '12000 + 18000 + 2000'})
+   tools  -> calculator returned '32000'...
+   agent  -> ANSWER: The total is **Rs. 32,000** (CS101: Rs. 12,000 + AI202: Rs. 18,000 + maximum late fee: Rs. 2,000). Sources: get_course_fee and fee_policy.md.
+
+[task-run] USER: And if I pay only 5 days late instead?
+   agent  -> call calculator({'expression': '12000 + 18000 + 500'})
+   tools  -> calculator returned '30500'...
+   agent  -> ANSWER: If you pay 5 days late, the late fee is **Rs. 500** (Rs. 100/day × 5, under the Rs. 2,000 cap). The total becomes **Rs. 30,500** (CS101: Rs. 12,000 + AI202: Rs. 18,000 + late fee: Rs. 500). Source: fee_policy.md.
+
+[task-run] USER: What is the capital of France?
+   agent  -> call search_handbook({'query': 'capital of France'})
+   tools  -> search_handbook returned 'NO_MATCH: this is not covered in the college handbook.'...
+   agent  -> ANSWER: I don't know — this isn't covered in the college handbook.
